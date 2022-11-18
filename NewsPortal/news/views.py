@@ -3,14 +3,14 @@ from django.views.generic import ListView, DetailView
 from .models import Post
 
 
-class PostList(ListView):
+class NewsList(ListView):
     model = Post
-    ordering = 'title'
-    template_name = 'posts.html'
-    context_object_name = 'posts'
+    template_name = 'news.html'
+    context_object_name = 'news'
+    queryset = Post.objects.order_by('-date')
 
 
-class PostDetail(DetailView):
+class PostView(DetailView):
     model = Post
     template_name = 'post.html'
     context_object_name = 'post'

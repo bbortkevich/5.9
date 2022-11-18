@@ -19,7 +19,7 @@ class Author(models.Model):
         self.save()
 
     def __str__(self):
-        return f'Name: {self.user.title()}, Rating: {self.rating}'
+        return f'Name: {self.user}, Rating: {self.rating}'
 
 
 class Category(models.Model):
@@ -29,7 +29,7 @@ class Category(models.Model):
 class Post(models.Model):
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     type = models.CharField(max_length=2, choices=POST_TYPE)
-    data = models.DateTimeField(auto_now_add=True)
+    date = models.DateTimeField(auto_now_add=True)
     title = models.CharField(max_length=64, default='Unnamed')
     text = models.TextField(max_length=10000)
     post_rating = models.IntegerField(default=0, db_column='rating')
