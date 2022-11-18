@@ -21,9 +21,9 @@
            {% for post in news %}
            <tr>
                <td>{{ post.title|censor }}</td>
-               <td>{{ post.text|censor }}</td>
+               <td>{{ post.text|censor|truncatechars:20 }}</td>
                <td>{{ post.author}}</td>
-               <td>{{ post.date }}</td>
+               <td>{{ post.date|date:"d.m.Y" }}</td>
            </tr>
            {% endfor %}
 
