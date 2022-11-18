@@ -1,4 +1,4 @@
-#Import all models
+# Import all models
 from news.models import *
 
 #1 Create 2 users
