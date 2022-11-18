@@ -1,8 +1,9 @@
-from django import templates
+from django import template
 
 register = template.Library()
 
 bad_words = ["дурак", "редиска", "олух"]
+
 
 @register.filter()
 def censor(value):
