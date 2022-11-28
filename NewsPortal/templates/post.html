@@ -3,12 +3,12 @@
 {% load custom_filters %}
 
 {% block title %}
-Post
+{{ post.title|censor }}
 {% endblock title %}
 
 {% block content %}
 <h1>{{ post.title|censor }}</h1>
-<p>{{ post.date }}</p>
+<p>{{ post.date|date:'d.m.Y' }}</p>
 <p>
     {{ post.text|censor }}
 </p>

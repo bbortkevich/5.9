@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from .resources import POST_TYPE
+from django.urls import reverse
 
 
 class Author(models.Model):
@@ -19,11 +20,14 @@ class Author(models.Model):
         self.save()
 
     def __str__(self):
-        return f'Name: {self.user}, Rating: {self.rating}'
+        return f'{self.user} (рейтинг: {self.rating})'
 
 
 class Category(models.Model):
     category_name = models.CharField(max_length=64, unique=True)
+
+    def __str__(self):
+        return f"{self.category_name}"
 
 
 class Post(models.Model):
@@ -58,6 +62,9 @@ class Post(models.Model):
 
     def preview(self):
         return f'{self.text[0:124]}...'
+
+    def get_absolute_url(self):
+        return reverse('post_detail', args=[str(self.id)])
 
     def __str__(self):
         return f'Post: {self.title.title()}, Text: {self.text[:20]}...'
