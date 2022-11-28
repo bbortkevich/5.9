@@ -9,7 +9,7 @@ class PostFilter(django_filters.FilterSet):
             attrs={'type': 'text', 'class': "form-control", 'placeholder': "Ведите текст..."}))
 
     date_time__gt = django_filters.DateFilter(
-        field_name="date", label="От даты", lookup_expr='gt',
+        field_name="date", label="Не ранее даты", lookup_expr='gt',
         widget=django.forms.DateInput(
             attrs={'type': 'date', 'class': "form-control"}))
 

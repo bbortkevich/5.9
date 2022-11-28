@@ -59,7 +59,7 @@ class NewsCreate(CreateView):
 
     def get_context_data(self, **kwargs) -> dict:
         context = super().get_context_data(**kwargs)
-        context['page_title'] = "Добавить новость"
+        context['page_title'] = "Добавить материал"
         return context
 
 
@@ -70,7 +70,7 @@ class NewsUpdate(UpdateView):
 
     def get_context_data(self, **kwargs) -> dict:
         context = super().get_context_data(**kwargs)
-        context['page_title'] = "Редактировать новость"
+        context['page_title'] = "Редактировать материал"
         return context
 
 
@@ -81,6 +81,6 @@ class NewsDelete(DeleteView):
 
     def get_context_data(self, **kwargs) -> dict:
         context = super().get_context_data(**kwargs)
-        context['page_title'] = "Удалить новость"
+        context['page_title'] = "Удалить материал"
         context['previous_page_url'] = reverse_lazy('posts_list')
         return context

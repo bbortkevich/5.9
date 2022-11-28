@@ -1,9 +1,8 @@
-% extends 'flatpages/default.html' %}
+{% extends 'flatpages/default.html' %}
 {% load custom_filters %}
-{% load custom_tags %}
 
 {% block title %}
-Posts
+    Поиск новостей
 {% endblock title %}
 
 {% block content %}
@@ -29,7 +28,7 @@ Posts
         {% for post in news %}
         <tr>
             <th scope="row">{{ post.title }}</th>
-            <td>{{ post.time }}</td>
+            <td>{{ post.date|date:"d.m.Y" }}</td>
             <td>{{ post.author }}</td>
             <td>{{ post.text | truncatewords:20 | censor}}</td>
         </tr>
