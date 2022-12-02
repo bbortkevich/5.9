@@ -13,6 +13,7 @@ from .models import Post
 from .filters import PostFilter
 from .forms import PostForm
 
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 
 class NewsList(ListView):
     model = Post
@@ -52,10 +53,12 @@ class PostDetail(DetailView):
     context_object_name = 'post'
 
 
-class NewsCreate(CreateView):
+class NewsCreate(PermissionRequiredMixin, LoginRequiredMixin, CreateView):
     form_class = PostForm
     model = Post
     template_name = 'post_edit.html'
+    success_url = reverse_lazy('post_list')
+    permission_required = ('news.add_post')
 
     def get_context_data(self, **kwargs) -> dict:
         context = super().get_context_data(**kwargs)
@@ -63,10 +66,11 @@ class NewsCreate(CreateView):
         return context
 
 
-class NewsUpdate(UpdateView):
+class NewsUpdate(PermissionRequiredMixin, LoginRequiredMixin, UpdateView):
     form_class = PostForm
     model = Post
     template_name = 'post_edit.html'
+    permission_required = ('news.change_post')
 
     def get_context_data(self, **kwargs) -> dict:
         context = super().get_context_data(**kwargs)
@@ -74,10 +78,11 @@ class NewsUpdate(UpdateView):
         return context
 
 
-class NewsDelete(DeleteView):
+class NewsDelete(PermissionRequiredMixin, DeleteView):
     model = Post
     template_name = 'post_delete.html'
     success_url = reverse_lazy('posts_list')
+    permission_required = ('news.delete_post')
 
     def get_context_data(self, **kwargs) -> dict:
         context = super().get_context_data(**kwargs)
